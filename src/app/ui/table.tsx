@@ -1,6 +1,13 @@
 import Image from "next/image";
-import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
-import { fetchFilteredInvoices } from "@/app/lib/data";
+import {
+  formatDateToLocal,
+  formatCurrency,
+  getMagazinesByPersonId,
+  getAllMagazines,
+  getPersonIdByName,
+} from "@/app/lib/data";
+// import { fetchFilteredInvoices } from "@/app/lib/data";
+import { createClient } from "@/app/utils/supabase/server";
 
 export default async function MagazinesTable({
   query,
@@ -9,39 +16,54 @@ export default async function MagazinesTable({
   query: string;
   currentPage: number;
 }) {
-  const invoices = await fetchFilteredInvoices(query, currentPage);
+  console.log("query", query);
+
+  const magazeinesResponse = await getAllMagazines();
+  if ("error" in magazeinesResponse) {
+    console.log(magazeinesResponse.error);
+    return <div>magazinesの取得でエラーが発生しました</div>;
+  }
+  const magazines = magazeinesResponse.data;
+  console.log("magazines", magazines);
+
+  const personIdResponse = await getPersonIdByName(query);
+  if ("error" in personIdResponse) {
+    console.log(personIdResponse.error);
+    return <div>person_idの取得でエラーが発生しました</div>;
+  }
+  const personId = personIdResponse.data;
+  console.log("personId", personId);
+
+  // const magazinesResponse = await getMagazinesByPersonId(personId);
+  // if ("error" in magazinesResponse) {
+  //   console.log(magazinesResponse.error);
+  //   return <div>雑誌の取得でエラーが発生しました</div>;
+  // }
+  // const magazines = magazinesResponse.data;
+  // console.log("magazines", magazines);
 
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
           <div className="md:hidden">
-            {invoices?.map((invoice) => (
+            {magazines?.map((magazine) => (
               <div
-                key={invoice.id}
+                key={magazine.id}
                 className="mb-2 w-full rounded-md bg-white p-4"
               >
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
                     <div className="mb-2 flex items-center">
                       <Image
-                        src={invoice.image_url}
+                        // src={magazine.image_url}
+                        src="/public/images/sports_pro_wrestler_woman_805_600.png"
                         className="mr-2 rounded-full"
-                        width={28}
-                        height={28}
-                        alt={`${invoice.name}'s profile picture`}
+                        width={60}
+                        height={80}
+                        alt={`${magazine.persons}'s profile picture`}
                       />
-                      <p>{invoice.name}</p>
                     </div>
-                    <p className="text-sm text-gray-500">{invoice.email}</p>
-                  </div>
-                </div>
-                <div className="flex w-full items-center justify-between pt-4">
-                  <div>
-                    <p className="text-xl font-medium">
-                      {formatCurrency(invoice.amount)}
-                    </p>
-                    <p>{formatDateToLocal(invoice.date)}</p>
                   </div>
                 </div>
               </div>
@@ -71,7 +93,7 @@ export default async function MagazinesTable({
               </tr>
             </thead>
             <tbody className="bg-white">
-              {invoices?.map((invoice) => (
+              {magazines?.map((invoice) => (
                 <tr
                   key={invoice.id}
                   className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
@@ -79,10 +101,11 @@ export default async function MagazinesTable({
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex items-center gap-3">
                       <Image
-                        src={invoice.image_url}
+                        // src={magazine.image_url}
+                        src="/public/images/sports_pro_wrestler_woman_805_600.png"
                         className="rounded-full"
-                        width={28}
-                        height={28}
+                        width={600}
+                        height={805}
                         alt={`${invoice.name}'s profile picture`}
                       />
                       <p>{invoice.name}</p>
@@ -91,15 +114,15 @@ export default async function MagazinesTable({
                   <td className="whitespace-nowrap px-3 py-3">
                     {invoice.email}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  {/* <td className="whitespace-nowrap px-3 py-3">
                     {formatCurrency(invoice.amount)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     {formatDateToLocal(invoice.date)}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  </td> */}
+                  {/* <td className="whitespace-nowrap px-3 py-3">
                     <InvoiceStatus status={invoice.status} />
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>

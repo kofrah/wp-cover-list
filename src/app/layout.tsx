@@ -28,7 +28,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        週刊プロレス表紙検索ツール
         {children}
       </body>
     </html>
