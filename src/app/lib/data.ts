@@ -57,7 +57,7 @@ export async function getMagazineData(name: string): Promise<
       magazine_persons:magazine_persons (
         magazines:magazines (*)
       )
-    `
+      `
     )
     .or(`name_jp.ilike.%${name}%,name_en.ilike.%${name}%`); // 大文字・小文字を区別しない部分一致
 
