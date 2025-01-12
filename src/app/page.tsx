@@ -4,8 +4,9 @@ import { lusitana } from "@/app/ui/fonts";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 import { Suspense } from "react";
 import Pagination from "./ui/pagination";
-import { getAllMagazines, getMagazineData } from "./lib/data";
+import { getMagazineData } from "./lib/data";
 import { Magazine } from "./lib/definitions";
+import { NoResult } from "./ui/noResult";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -38,19 +39,52 @@ export default async function Page(props: {
 
   return (
     <div className="w-full">
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full items-center justify-between mt-4 px-4 py-2">
         <h1 className={`${lusitana.className} text-2xl`}>
           週刊プロレス表紙検索ツール
         </h1>
       </div>
-      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="選手名を入力" />
+      {/* 言語選択とダークモード切り替え */}
+      <div className="flex w-full justify-end px-4 py-2 gap-4">
+        <div>
+          <button>日本語</button>
+          <button>English</button>
+        </div>
+        <div>
+          <button>ダークモード</button>
+        </div>
       </div>
-      <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-        <Table magazines={magazinesOnPage} />
-      </Suspense>
-      <div className="mt-5 flex w-full justify-center">
-        <Pagination totalPages={totalPages} />
+      <div className="px-5">
+        <div className="mt-5 flex items-center justify-center gap-4 px-4">
+          <Search placeholder="選手名を入力" />
+        </div>
+        <Suspense fallback={<InvoicesTableSkeleton />}>
+          <div className="mt-5 flex w-full justify-center">
+            <p>検索結果：{totalHits}件</p>
+          </div>
+          <div>{totalHits === 0 && <NoResult />}</div>
+        </Suspense>
+        {/* ソートボタン */}
+        {/* 新しい順と古い順のラジオボタン*/}
+        <div className="mt-5 flex justify-end gap-4 px-4 py-2">
+          <label>
+            <input type="radio" name="sort" value="new" defaultChecked />
+            新しい順
+          </label>
+          <label>
+            <input type="radio" name="sort" value="old" />
+            古い順
+          </label>
+        </div>
+        <Suspense
+          key={query + currentPage}
+          fallback={<InvoicesTableSkeleton />}
+        >
+          <Table magazines={magazinesOnPage} />
+        </Suspense>
+        <div className="mt-5 flex w-full justify-center">
+          <Pagination totalPages={totalPages} />
+        </div>
       </div>
     </div>
   );
