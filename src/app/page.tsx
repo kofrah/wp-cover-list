@@ -7,6 +7,7 @@ import Pagination from "./ui/pagination";
 import { getMagazineData } from "./lib/data";
 import { Magazine } from "./lib/definitions";
 import { NoResult } from "./ui/noResult";
+import SortButton from "./ui/buttons";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -59,23 +60,14 @@ export default async function Page(props: {
           <Search placeholder="選手名を入力" />
         </div>
         <Suspense fallback={<InvoicesTableSkeleton />}>
-          <div className="mt-5 flex w-full justify-center">
+          <div className="text-lg mt-5 flex w-full justify-center">
             <p>検索結果：{totalHits}件</p>
           </div>
           <div>{totalHits === 0 && <NoResult />}</div>
         </Suspense>
         {/* ソートボタン */}
         {/* 新しい順と古い順のラジオボタン*/}
-        <div className="mt-5 flex justify-end gap-4 px-4 py-2">
-          <label>
-            <input type="radio" name="sort" value="new" defaultChecked />
-            新しい順
-          </label>
-          <label>
-            <input type="radio" name="sort" value="old" />
-            古い順
-          </label>
-        </div>
+        <SortButton />
         <Suspense
           key={query + currentPage}
           fallback={<InvoicesTableSkeleton />}
