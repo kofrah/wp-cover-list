@@ -21,7 +21,7 @@ export default async function MagazinesTable({
           rel="noopener noreferrer"
           target="_blank"
         >
-          <div className="bg-white p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md dark:shadow-gray-700 cursor-pointer hover:shadow-lg dark:hover:shadow-gray-600 transition-shadow duration-300 flex flex-col items-center">
             <div className="flex justify-center items-center">
               <Image
                 src={`/sports_pro_wrestler_woman_805_600.png`}
@@ -30,7 +30,7 @@ export default async function MagazinesTable({
                 height={300}
               />
             </div>
-            <p className="text-sm text-gray-600 mt-2">
+            <p className="text-sm text-gray-600 mt-2 dark:text-gray-300">
               No.{magazine.issue_number}　
               {formatDateToJapaneseManual(magazine.issue_date)}発売
             </p>
