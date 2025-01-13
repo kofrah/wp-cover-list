@@ -1,5 +1,5 @@
 "use client";
-function SortButtons() {
+function SortButton() {
   return (
     <div className="flex items-center justify-end px-4">
       {/* 新しい順 */}
@@ -41,4 +41,4 @@ function SortButtons() {
   );
 }
 
-export default SortButtons;
+export default SortButton;

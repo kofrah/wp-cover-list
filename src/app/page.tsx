@@ -7,7 +7,9 @@ import Pagination from "./ui/pagination";
 import { getMagazineData } from "./lib/data";
 import { Magazine } from "./lib/definitions";
 import { NoResult } from "./ui/noResult";
-import SortButton from "./ui/buttons";
+import SortButton from "./ui/buttons/sortButton";
+import DarkModeButton from "./ui/buttons/darkModeButton";
+import ChangelangButton from "./ui/buttons/changelangButton";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -46,14 +48,9 @@ export default async function Page(props: {
         </h1>
       </div>
       {/* 言語選択とダークモード切り替え */}
-      <div className="flex w-full justify-end px-4 py-2 gap-4">
-        <div>
-          <button>日本語</button>
-          <button>English</button>
-        </div>
-        <div>
-          <button>ダークモード</button>
-        </div>
+      <div className="flex w-full justify-end px-8 py-2 gap-4">
+        <ChangelangButton />
+        <DarkModeButton />
       </div>
       <div className="px-5">
         <div className="mt-5 flex items-center justify-center gap-4 px-4">
