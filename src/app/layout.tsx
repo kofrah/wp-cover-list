@@ -28,7 +28,7 @@ export default function RootLayout({
     // Hydrationの警告を抑制する
     <html lang="en" className="" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  dark:bg-black dark:text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  dark:bg-contentBackGround dark:text-white`}
       >
         <ThemeProvider attribute="class" defaultTheme="systme" enableSystem>
           {children}

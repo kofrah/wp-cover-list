@@ -12,7 +12,7 @@ export default async function MagazinesTable({
   return (
     // レスポンシブ対応　スマートフォンの場合は1行に2つ
     // 余白を適切に設定
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {magazines.map((magazine) => (
         <Link
           key={magazine.id}
@@ -21,7 +21,7 @@ export default async function MagazinesTable({
           rel="noopener noreferrer"
           target="_blank"
         >
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md dark:shadow-gray-700 cursor-pointer hover:shadow-lg dark:hover:shadow-gray-600 transition-shadow duration-300 flex flex-col items-center">
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-md shadow-md dark:shadow-gray-700 cursor-pointer hover:shadow-lg dark:hover:shadow-gray-600 transition-shadow duration-300 flex flex-col">
             <div className="flex justify-center items-center">
               <Image
                 src={`/sports_pro_wrestler_woman_805_600.png`}
@@ -30,10 +30,14 @@ export default async function MagazinesTable({
                 height={300}
               />
             </div>
-            <p className="text-sm text-gray-600 mt-2 dark:text-gray-300">
-              No.{magazine.issue_number}　
-              {formatDateToJapaneseManual(magazine.issue_date)}発売
-            </p>
+            <span className="text-gray-600 mt-2">
+              <p className="text-sm dark:text-gray-300">
+                No.{magazine.issue_number}
+              </p>
+              <p className="text-xs dark:text-gray-300">
+                {formatDateToJapaneseManual(magazine.issue_date)}発売
+              </p>
+            </span>
           </div>
         </Link>
       ))}

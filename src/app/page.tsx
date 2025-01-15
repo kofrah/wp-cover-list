@@ -8,8 +8,7 @@ import { getMagazineData } from "./lib/data";
 import { Magazine } from "./lib/definitions";
 import { NoResult } from "./ui/noResult";
 import SortButton from "./ui/buttons/sortButton";
-import DarkModeButton from "./ui/buttons/darkModeButton";
-import ChangelangButton from "./ui/buttons/changelangButton";
+import Header from "./ui/header";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -41,42 +40,46 @@ export default async function Page(props: {
   const magazinesOnPage = magazines.slice(start, end);
 
   return (
-    <div className="w-full px-4">
-      <div className="flex w-full items-center justify-center md:justify-between mt-4 py-2">
-        <h1 className={`${lusitana.className} text-2xl text-center`}>
-          週刊プロレス表紙検索
-        </h1>
-      </div>
-      <div className="px-4">
-        {/* 言語選択とダークモード切り替え */}
-        <div className="flex w-full justify-end py-2 gap-4">
-          <ChangelangButton />
-          <DarkModeButton />
-        </div>
-        <div className="">
-          <div className="mt-5 flex items-center justify-center gap-4">
-            <Search placeholder="選手名を入力" />
-          </div>
-          <Suspense fallback={<InvoicesTableSkeleton />}>
-            <div className="text-lg mt-5 flex w-full justify-center">
-              <p>検索結果：{totalHits}件</p>
+    <>
+      <Header />
+      <div className="w-full px-4">
+        <div className="px-4">
+          {/* 言語選択とダークモード切り替え */}
+          <div className="">
+            <div className="mt-5 flex items-center justify-center gap-4">
+              <Search placeholder="選手名を入力" />
             </div>
-            <div>{totalHits === 0 && <NoResult />}</div>
-          </Suspense>
-          {/* ソートボタン */}
-          {/* 新しい順と古い順のラジオボタン*/}
-          <SortButton />
-          <Suspense
-            key={query + currentPage}
-            fallback={<InvoicesTableSkeleton />}
-          >
-            <Table magazines={magazinesOnPage} />
-          </Suspense>
-          <div className="mt-5 mb-5 flex w-full justify-center">
-            <Pagination totalPages={totalPages} />
+            <Suspense fallback={<InvoicesTableSkeleton />}>
+              <div className="text-lg mt-5 flex w-full justify-center"></div>
+              <div>
+                {query === "" ? (
+                  <p className="text-center">全ての表紙：{totalHits}件</p>
+                ) : totalHits === 0 ? (
+                  <NoResult query={query} />
+                ) : (
+                  <p className="text-center">
+                    "{query}"での検索結果：{totalHits}件
+                  </p>
+                )}
+              </div>
+            </Suspense>
+            {/* ソートボタン */}
+            {/* 新しい順と古い順のラジオボタン*/}
+            {/* <SortButton /> */}
+            <Suspense
+              key={query + currentPage}
+              fallback={<InvoicesTableSkeleton />}
+            >
+              <div className="pt-4">
+                <Table magazines={magazinesOnPage} />
+              </div>
+            </Suspense>
+            <div className="mt-5 mb-5 flex w-full justify-center">
+              <Pagination totalPages={totalPages} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

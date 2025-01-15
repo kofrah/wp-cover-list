@@ -21,25 +21,23 @@ const DarkModeToggle = () => {
   if (!mounted) {
     // マウントされる前のスケルトン
     return (
-      <div className="flex justify-center items-center w-12 h-12 rounded-lg border p-2 dark:border-gray-500">
+      <div className="flex justify-center items-center w-12 h-12 rounded-lg  p-2 ">
         <div className="w-6 h-6"></div>
       </div>
     );
   }
 
   return (
-    <div className="flex justify-end items-center dark:bg-gray-800">
-      <button
-        onClick={handleToggle}
-        className="flex justify-center items-center w-12 h-12 rounded-lg p-2 border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:border-gray-600"
-      >
-        {resolvedTheme === "light" ? (
-          <MoonIcon className="w-6 h-6" />
-        ) : (
-          <SunIcon className="w-6 h-6" />
-        )}
-      </button>
-    </div>
+    <button
+      onClick={handleToggle}
+      className="flex justify-center items-center w-12 h-12 rounded-lg p-2  hover:bg-gray-100 dark:hover:bg-gray-700 dark:border-gray-600"
+    >
+      {resolvedTheme === "light" ? (
+        <MoonIcon className="w-6 h-6" />
+      ) : (
+        <SunIcon className="w-6 h-6" />
+      )}
+    </button>
   );
 };
 
