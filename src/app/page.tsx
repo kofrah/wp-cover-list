@@ -9,6 +9,7 @@ import { Magazine } from "./lib/definitions";
 import { NoResult } from "./ui/noResult";
 import SortButton from "./ui/buttons/sortButton";
 import Header from "./ui/header";
+import SecondHeader from "./ui/secondHeader";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -42,23 +43,24 @@ export default async function Page(props: {
   return (
     <>
       <Header />
+      <SecondHeader />
       <div className="w-full px-4">
         <div className="px-4">
           {/* 言語選択とダークモード切り替え */}
           <div className="">
-            <div className="mt-5 flex items-center justify-center gap-4">
-              <Search placeholder="選手名を入力" />
-            </div>
             <Suspense fallback={<InvoicesTableSkeleton />}>
               <div className="text-lg mt-5 flex w-full justify-center"></div>
               <div>
                 {query === "" ? (
-                  <p className="text-center">全ての表紙：{totalHits}件</p>
+                  <p className="text-center">
+                    全ての表紙：<span className="font-bold">{totalHits}件</span>
+                  </p>
                 ) : totalHits === 0 ? (
                   <NoResult query={query} />
                 ) : (
                   <p className="text-center">
-                    "{query}"での検索結果：{totalHits}件
+                    <span className="font-bold">"{query}"</span>での検索結果：
+                    <span className="font-bold">{totalHits}件</span>
                   </p>
                 )}
               </div>

@@ -78,7 +78,7 @@ function PaginationNumber({
     {
       "rounded-l-md": position === "first" || position === "single",
       "rounded-r-md": position === "last" || position === "single",
-      "z-10 bg-blue-600 border-black-600 text-white dark:bg-white dark:text-black":
+      "z-10 bg-blue-600 border-black-600 text-white font-bold dark:bg-white dark:text-black":
         isActive, // 現在のページのスタイル
       "hover:bg-gray-100 dark:hover:bg-gray-800":
         !isActive && position !== "middle", // ホバー時のスタイル
