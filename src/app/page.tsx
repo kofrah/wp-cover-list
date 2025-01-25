@@ -8,8 +8,8 @@ import { getMagazineData } from "./lib/data";
 import { Magazine } from "./lib/definitions";
 import { NoResult } from "./ui/noResult";
 import SortButton from "./ui/buttons/sortButton";
-import Header from "./ui/header";
-import SecondHeader from "./ui/secondHeader";
+import Header from "./ui/Headers/header";
+import SmartPhoneSecondHeader from "./ui/Headers/smartPhoneSecondHeader";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -43,11 +43,10 @@ export default async function Page(props: {
   return (
     <>
       <Header />
-      <SecondHeader />
-      <div className="w-full px-4 pt-12">
+      <div className="w-full px-4 pt-28 md:pt-20">
         <div className="px-4">
           {/* 言語選択とダークモード切り替え */}
-          <div className="">
+          <div className="text-lg">
             <Suspense fallback={<InvoicesTableSkeleton />}>
               <div>
                 {query === "" ? (

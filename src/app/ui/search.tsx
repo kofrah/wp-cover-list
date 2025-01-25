@@ -29,12 +29,14 @@ export default function Search({ placeholder }: { placeholder: string }) {
           Search
         </label>
         <input
-          className="peer block w-full border border-gray-200 dark:border-gray-700 
-        bg-white dark:bg-gray-800 py-[9px] pl-10 text-sm 
-        text-gray-900 dark:text-gray-200 outline-none 
-      　placeholder:text-gray-500 dark:placeholder:text-gray-300 
-        focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-        dark:focus:ring-1 dark:focus:ring-white dark:focus:border-white"
+          className="peer block 
+          bg-gray-100 dark:bg-gray-800 py-[9px] pl-10 text-sm 
+          text-gray-900 dark:text-gray-200 outline-none 
+          rounded-none md:rounded-md
+          w-full md:w-96
+        　placeholder:text-gray-500 dark:placeholder:text-gray-300 
+          focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+          dark:focus:ring-1 dark:focus:ring-white dark:focus:border-white"
           placeholder={placeholder}
           onChange={(e) => {
             handleSearch(e.target.value);
