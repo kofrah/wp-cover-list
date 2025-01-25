@@ -44,12 +44,11 @@ export default async function Page(props: {
     <>
       <Header />
       <SecondHeader />
-      <div className="w-full px-4">
+      <div className="w-full px-4 pt-12">
         <div className="px-4">
           {/* 言語選択とダークモード切り替え */}
           <div className="">
             <Suspense fallback={<InvoicesTableSkeleton />}>
-              <div className="text-lg mt-5 flex w-full justify-center"></div>
               <div>
                 {query === "" ? (
                   <p className="text-center">
