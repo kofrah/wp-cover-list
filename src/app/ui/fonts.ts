@@ -1,4 +1,7 @@
 import {
+  Aoboshi_One,
+  BIZ_UDPGothic,
+  Dela_Gothic_One,
   Inter,
   Lusitana,
   Noto_Sans_JP,
@@ -23,4 +26,15 @@ export const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-noto-serif-jp",
+});
+
+export const aoboshiOne = Aoboshi_One({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+export const tmpFont = Dela_Gothic_One({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-noto-serif",
 });

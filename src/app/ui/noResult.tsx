@@ -5,7 +5,7 @@ interface NoResultProps {
 
 export const NoResult: React.FC<NoResultProps> = ({ query }) => {
   return (
-    <div className="text-center">
+    <div className="text-center pt-14">
       <p>"{query}"に一致する表紙はありませんでした。</p>
     </div>
   );

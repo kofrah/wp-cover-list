@@ -22,6 +22,8 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   const allPages = generatePagination(currentPage, totalPages);
   console.log("test:allPages", allPages);
 
+  if (totalPages === 0) return null;
+
   return (
     <>
       <div className="inline-flex">

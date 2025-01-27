@@ -2,17 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { notoSansJP, notoSerifJP, tmpFont } from "./ui/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,7 +18,7 @@ export default function RootLayout({
     // Hydrationの警告を抑制する
     <html lang="en" className="" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  dark:bg-contentBackGround dark:text-white`}
+        className={`${notoSerifJP.className} antialiased  dark:bg-contentBackGround dark:text-white`}
       >
         <ThemeProvider attribute="class" defaultTheme="systme" enableSystem>
           {children}

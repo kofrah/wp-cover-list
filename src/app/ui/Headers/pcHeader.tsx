@@ -8,7 +8,7 @@ const PCHeader = () => {
       {/* PC用ヘッダー */}
       <div
         className="fixed top-0 z-50 flex w-full justify-between items-center py-1
-        dark:bg-black backdrop-blur-lg bg-white 
+       bg-blue-200 dark:bg-black backdrop-blur-lg
         border-b border-gray-200 dark:border-none"
       >
         <div className="flex justify-start items-center ml-3 mt-1">

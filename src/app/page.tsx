@@ -43,8 +43,8 @@ export default async function Page(props: {
   return (
     <>
       <Header />
-      <div className="w-full px-4 pt-28 md:pt-20">
-        <div className="px-4">
+      <div className="w-full px-4 pt-28 md:pt-16">
+        <div className="px-2 mb:px-4">
           {/* 言語選択とダークモード切り替え */}
           <div className="text-lg">
             <Suspense fallback={<InvoicesTableSkeleton />}>
@@ -57,7 +57,7 @@ export default async function Page(props: {
                   <NoResult query={query} />
                 ) : (
                   <p className="text-center">
-                    <span className="font-bold">"{query}"</span>での検索結果：
+                    <span className="font-bold">"{query}"</span>の検索結果：
                     <span className="font-bold">{totalHits}件</span>
                   </p>
                 )}
