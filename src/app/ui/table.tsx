@@ -21,7 +21,12 @@ export default async function MagazinesTable({
           rel="noopener noreferrer"
           target="_blank"
         >
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-md shadow-md dark:shadow-gray-700 cursor-pointer hover:shadow-lg dark:hover:shadow-gray-600 transition-shadow duration-300 flex flex-col">
+          <div
+            className="bg-white dark:bg-gray-800 
+          p-4 rounded-md shadow-md dark:shadow-gray-700 cursor-pointer 
+          hover:shadow-lg dark:hover:shadow-gray-600 transition-shadow 
+          duration-300 flex flex-col"
+          >
             <div className="flex justify-center items-center">
               <Image
                 src={`/sports_pro_wrestler_woman_805_600.png`}
