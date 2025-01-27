@@ -23,27 +23,22 @@ export default function Search({ placeholder }: { placeholder: string }) {
   }, 300);
 
   return (
-    <div>
-      <div className="relative flex flex-1 flex-shrink-0">
+    <div className="flex items-center justify-center bg-white dark:bg-black px-3 py-2">
+      <div className="relative flex w-full max-w-md">
         <label htmlFor="search" className="sr-only">
           Search
         </label>
         <input
-          className="peer block 
-          bg-gray-100 dark:bg-gray-800 py-[9px] pl-10 text-sm 
-          text-gray-900 dark:text-gray-200 outline-none 
-          rounded-none md:rounded-md
-          w-full md:w-96
-        　placeholder:text-gray-500 dark:placeholder:text-gray-300 
-          focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-          dark:focus:ring-1 dark:focus:ring-white dark:focus:border-white"
+          id="search"
+          className="peer block w-full md:w-96 rounded-md bg-gray-100 dark:bg-gray-800 py-2 pl-10 pr-4 text-sm 
+        text-gray-900 dark:text-gray-200 outline-none placeholder:text-gray-500 dark:placeholder:text-gray-400 
+        focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+        dark:focus:ring-white dark:focus:border-white"
           placeholder={placeholder}
-          onChange={(e) => {
-            handleSearch(e.target.value);
-          }}
+          onChange={(e) => handleSearch(e.target.value)}
           defaultValue={searchParams.get("query")?.toString()}
         />
-        <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 dark:text-gray-400 peer-focus:text-blue-500" />
+        <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500 dark:text-gray-400 peer-focus:text-blue-500" />
       </div>
     </div>
   );

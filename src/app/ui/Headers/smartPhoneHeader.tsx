@@ -6,7 +6,7 @@ const SmartPhoneHeader = () => {
   return (
     <>
       <div
-        className="fixed top-0 flex w-full justify-between items-center py-1
+        className="fixed top-0 flex w-full justify-between items-center py-1 
         dark:bg-black backdrop-blur-lg bg-white"
       >
         <div className="flex justify-start items-center ml-3 mt-1">
@@ -15,8 +15,8 @@ const SmartPhoneHeader = () => {
         <div className="flex justify-end items-center mr-3">
           <DarkModeToggle />
         </div>
+        <SmartPhoneSecondHeader />
       </div>
-      <SmartPhoneSecondHeader />
     </>
   );
 };
