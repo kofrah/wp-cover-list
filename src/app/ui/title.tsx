@@ -30,5 +30,9 @@ export default function Title() {
     }
   };
 
-  return <span onClick={handleClick}>「週プロ」表紙レスラー検索ツール</span>;
+  return (
+    <span className="text-black dark:text-white" onClick={handleClick}>
+      「週プロ」表紙レスラー検索ツール
+    </span>
+  );
 }
