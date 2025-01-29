@@ -1,15 +1,11 @@
-import Search from "@/app/ui/search";
 import Table from "@/app/ui/table";
-import { lusitana } from "@/app/ui/fonts";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 import { Suspense } from "react";
 import Pagination from "./ui/pagination";
 import { getMagazineData } from "./lib/data";
 import { Magazine } from "./lib/definitions";
 import { NoResult } from "./ui/noResult";
-import SortButton from "./ui/buttons/sortButton";
 import Header from "./ui/Headers/header";
-import SmartPhoneSecondHeader from "./ui/Headers/smartPhoneSecondHeader";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -57,7 +53,8 @@ export default async function Page(props: {
                   <NoResult query={query} />
                 ) : (
                   <p className="text-center">
-                    <span className="font-bold">"{query}"</span>の検索結果：
+                    <span className="font-bold">&quot;{query}&quot;</span>
+                    の検索結果：
                     <span className="font-bold">{totalHits}件</span>
                   </p>
                 )}

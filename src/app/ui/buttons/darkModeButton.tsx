@@ -6,7 +6,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 const DarkModeToggle = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme, resolvedTheme, themes, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   // useEffectはクライアントでしか実行されないため、これで安全にUIを表示できる。
   useEffect(() => {
@@ -14,7 +14,6 @@ const DarkModeToggle = () => {
   }, []);
 
   const handleToggle = () => {
-    console.log("test:handleToggle", resolvedTheme);
     setTheme(resolvedTheme === "light" ? "dark" : "light");
   };
 

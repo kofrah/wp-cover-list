@@ -10,8 +10,6 @@ const SmartPhoneSecondHeader = () => {
   };
 
   const style = `${styles.base} ${isHeaderActive ? styles.active : ""}`;
-  console.log("isHeaderActive", isHeaderActive);
-  console.log("style", style);
   return (
     <>
       <div className={style}>

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { notoSansJP, notoSerifJP, tmpFont } from "./ui/fonts";
+import { notoSerifJP } from "./ui/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",

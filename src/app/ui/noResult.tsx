@@ -9,7 +9,7 @@ export const NoResult: React.FC<NoResultProps> = ({ query }) => {
   return (
     <>
       <div className="text-center pt-14">
-        <p>"{query}"に一致する表紙はありませんでした。</p>
+        <p>&quot;{query}&quot;に一致する表紙はありませんでした。</p>
       </div>
       <div className="flex justify-center pt-8">
         <HealthiconsCryingOutline />

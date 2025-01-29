@@ -1,11 +1,9 @@
 import {
   Aoboshi_One,
-  BIZ_UDPGothic,
   Dela_Gothic_One,
   Inter,
   Lusitana,
   Noto_Sans_JP,
-  Noto_Serif,
   Noto_Serif_JP,
 } from "next/font/google";
 
