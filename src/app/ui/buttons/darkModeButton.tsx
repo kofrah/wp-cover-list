@@ -29,7 +29,8 @@ const DarkModeToggle = () => {
   return (
     <button
       onClick={handleToggle}
-      className="flex justify-center items-center w-12 h-12 rounded-lg p-2  hover:bg-gray-100 dark:hover:bg-gray-700 dark:border-gray-600"
+      className="flex justify-center items-center w-12 h-12 rounded-lg p-2 
+       hover:bg-gray-100 dark:hover:bg-gray-700 dark:border-gray-600"
     >
       {resolvedTheme === "light" ? (
         <MoonIcon className="w-6 h-6" />
