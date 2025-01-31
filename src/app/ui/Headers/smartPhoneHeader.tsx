@@ -7,7 +7,7 @@ const SmartPhoneHeader = () => {
     <>
       <div
         className="fixed top-0 flex w-full justify-between items-center py-1 
-        bg-blue-200 dark:bg-black
+        bg-orange-600 #F26F2F dark:bg-black
         backdrop-blur-lg"
       >
         <div className="flex justify-start items-center ml-3 mt-1">

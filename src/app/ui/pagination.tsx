@@ -13,14 +13,12 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   const currentPage = Number(searchParams.get("page")) || 1;
 
   const createPageURL = (pageNumber: number | string) => {
-    console.log("test:createPageURL", pageNumber);
     const params = new URLSearchParams(searchParams);
     params.set("page", pageNumber.toString());
     return `${pathname}?${params.toString()}`;
   };
 
   const allPages = generatePagination(currentPage, totalPages);
-  console.log("test:allPages", allPages);
 
   if (totalPages === 0) return null;
 
@@ -76,15 +74,15 @@ function PaginationNumber({
   isActive: boolean;
 }) {
   const className = clsx(
-    "flex h-10 w-10 items-center justify-center text-sm border",
+    "flex h-10 w-10 items-center justify-center text-sm border  dark:border-white",
     {
       "rounded-l-md": position === "first" || position === "single",
       "rounded-r-md": position === "last" || position === "single",
-      "z-10 bg-blue-600 border-black-600 text-white font-bold dark:bg-white dark:text-black":
+      "z-10 bg-orange-600 border-black text-white font-bold dark:bg-white dark:text-black":
         isActive, // 現在のページのスタイル
-      "hover:bg-gray-100 dark:hover:bg-gray-800":
+      "hover:bg-gray-100 border-black dark:hover:bg-gray-800":
         !isActive && position !== "middle", // ホバー時のスタイル
-      "text-gray-300 dark:text-gray-500": position === "middle", // "..." のスタイル
+      "text-gray-300 border-black  dark:text-gray-500": position === "middle", // "..." のスタイル
     }
   );
 
@@ -107,9 +105,10 @@ function PaginationArrow({
   isDisabled?: boolean;
 }) {
   const className = clsx(
-    "flex h-10 w-10 items-center justify-center rounded-md border",
+    "flex h-10 w-10 items-center justify-center rounded-md border border-black dark:border-white",
     {
-      "pointer-events-none text-gray-300 dark:text-gray-500": isDisabled, // 無効化時のスタイル
+      "pointer-events-none border-gray-400 text-gray-400 dark:border-gray-500 dark:text-gray-500":
+        isDisabled, // 無効化時のスタイル
       "hover:bg-gray-100 dark:hover:bg-gray-800": !isDisabled, // ホバー時のスタイル
       "mr-2 md:mr-4": direction === "left",
       "ml-2 md:ml-4": direction === "right",

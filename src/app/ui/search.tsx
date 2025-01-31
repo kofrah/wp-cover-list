@@ -23,7 +23,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
   }, 300);
 
   return (
-    <div className="flex items-center justify-center bg-blue-200 dark:bg-black px-3 py-2 md:py-1">
+    <div className="flex items-center justify-center bg-orange-600 dark:bg-black px-3 py-2 md:py-1">
       <div className="relative flex w-full max-w-md">
         <label htmlFor="search" className="sr-only">
           Search
@@ -33,7 +33,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
           className="peer block w-full  rounded-md bg-gray-100 dark:bg-gray-800 py-1 pl-10 pr-4 
           text-base sm:text-lg  text-gray-900 dark:text-gray-200 
           outline-none placeholder:text-gray-500 dark:placeholder:text-gray-400 
-          focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+          focus:ring-2
          dark:focus:ring-white dark:focus:border-white"
           placeholder={placeholder}
           onChange={(e) => handleSearch(e.target.value)}

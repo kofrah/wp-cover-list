@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { notoSerifJP } from "./ui/fonts";
+import { tmpFont } from "./ui/fonts";
 
 export const metadata: Metadata = {
   title: "週プロ表紙検索ツール",
@@ -17,9 +17,11 @@ export default function RootLayout({
     // Hydrationの警告を抑制する
     <html lang="en" className="" suppressHydrationWarning>
       <body
-        className={`${notoSerifJP.className} antialiased 
-         bg-white text-black
-         dark:bg-contentBackGround dark:text-white`}
+        className={`${tmpFont.className} antialiased 
+        text-black dark:text-dark_contentText
+        bg-light_contentBackGround
+        dark:bg-dark_contentBackGround
+        `}
       >
         <ThemeProvider attribute="class" defaultTheme="systme" enableSystem>
           {children}
