@@ -8,6 +8,8 @@ export default async function MagazinesTable({
 }: {
   magazines: Magazine[];
 }) {
+  const randomCover = `/sampleCover${Math.floor(Math.random() * 3) + 1}.png`;
+
   // gridで表示 1行に4つ
   return (
     // レスポンシブ対応　スマートフォンの場合は1行に2つ
