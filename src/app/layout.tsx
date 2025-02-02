@@ -24,7 +24,7 @@ export default function RootLayout({
         tracking-wide
         `}
       >
-        <ThemeProvider attribute="class" defaultTheme="systme" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
       </body>
