@@ -12,11 +12,9 @@ const useHeaderScroll = (): boolean => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      console.log(currentScrollY > lastScrollY);
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // 下スクロール時
         setIsHeaderActive(false);
-        console.log("showSecondHeader", isHeaderActive);
       } else {
         // 上スクロール時
         setIsHeaderActive(true);

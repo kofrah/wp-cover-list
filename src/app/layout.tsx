@@ -21,6 +21,7 @@ export default function RootLayout({
         text-black dark:text-dark_contentText
         bg-light_contentBackGround
         dark:bg-dark_contentBackGround
+        tracking-wide
         `}
       >
         <ThemeProvider attribute="class" defaultTheme="systme" enableSystem>

@@ -1,4 +1,7 @@
+"use client";
+
 import { SVGProps } from "react";
+import { useResetSearch } from "../hooks/useResetSearch";
 
 // 検索結果が存在しない場合のコンポーネント
 interface NoResultProps {
@@ -6,13 +9,31 @@ interface NoResultProps {
 }
 
 export const NoResult: React.FC<NoResultProps> = ({ query }) => {
+  const { handleReset } = useResetSearch(); // リセット処理を取得
+
   return (
     <>
-      <div className="text-center pt-14">
-        <p>&quot;{query}&quot;に一致する表紙はありませんでした。</p>
+      <div className="flex justify-center">
+        <div className="pt-14 text-center">
+          <p>&quot;{query}&quot;を含む検索結果はありませんでした。</p>
+        </div>
       </div>
-      <div className="flex justify-center pt-8">
-        <HealthiconsCryingOutline />
+
+      <div className="flex justify-center">
+        <button
+          onClick={handleReset}
+          className="cursor-pointer border border-transparent rounded-md
+        hover:border-black dark:hover:border-slate-200
+        dark:shadow-gray-700 
+          hover:shadow-lg dark:hover:shadow-gray-600
+          transition-shadow duration-300
+          flex flex-col items-center p-2 mt-4"
+        >
+          <div className="pt-8">
+            <HealthiconsCryingOutline />
+          </div>
+          <span className="pt-2">検索ワードをリセットする</span>
+        </button>
       </div>
     </>
   );

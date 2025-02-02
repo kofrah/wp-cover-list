@@ -30,7 +30,6 @@ export default async function Page(props: {
   const itemsPerPage = 12;
   // 合計ページ数
   const totalPages = Math.ceil(totalHits / itemsPerPage);
-  console.log("test:Page", query, currentPage, totalHits, totalPages);
   // 表示するページ
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;

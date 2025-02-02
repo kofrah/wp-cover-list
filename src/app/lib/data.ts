@@ -81,6 +81,5 @@ export async function getMagazineData(name: string): Promise<
       new Date(b.issue_date).getTime() - new Date(a.issue_date).getTime()
   ); // issue_dateで降順ソート
 
-  console.log(uniqueSortedMagazines);
   return { uniqueSortedMagazines };
 }
