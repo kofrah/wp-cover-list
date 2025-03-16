@@ -1,6 +1,7 @@
 import DarkModeToggle from "../buttons/darkModeButton";
 import SmartPhoneSecondHeader from "./smartPhoneSecondHeader";
 import Title from "../title";
+import FavoriteLinkButton from "../buttons/favoriteLinkButton";
 
 const SmartPhoneHeader = () => {
   return (
@@ -14,6 +15,7 @@ const SmartPhoneHeader = () => {
           <Title />
         </div>
         <div className="flex justify-end items-center mr-3">
+          <FavoriteLinkButton />
           <DarkModeToggle />
         </div>
         <SmartPhoneSecondHeader />

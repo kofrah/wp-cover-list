@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export function useResetSearch() {
   const [isClicked, setIsClicked] = useState(false);
   const { replace } = useRouter();
-  const pathname = usePathname();
 
   const currentParams = useSearchParams();
 
@@ -27,7 +26,8 @@ export function useResetSearch() {
       const params = new URLSearchParams();
       params.set("page", "1");
       params.delete("query");
-      replace(`${pathname}?${params.toString()}`);
+
+      replace(`/?${params.toString()}`);
 
       // クリック防止を一定時間後に解除
       setTimeout(() => setIsClicked(false), 1000);

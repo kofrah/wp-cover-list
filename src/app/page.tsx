@@ -5,7 +5,6 @@ import Pagination from "./ui/pagination";
 import { getMagazineData } from "./lib/data";
 import { Magazine } from "./lib/definitions";
 import { NoResult } from "./ui/noResult";
-import Header from "./ui/Headers/header";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -37,7 +36,6 @@ export default async function Page(props: {
 
   return (
     <>
-      <Header />
       <div className="w-full px-4 pt-28 md:pt-16">
         <div className="px-2 mb:px-4">
           {/* 言語選択とダークモード切り替え */}
@@ -49,7 +47,9 @@ export default async function Page(props: {
                     全ての表紙：<span className="font-bold">{totalHits}件</span>
                   </p>
                 ) : totalHits === 0 ? (
-                  <NoResult query={query} />
+                  <NoResult
+                    attention={`${query}を含む検索結果はありませんでした。`}
+                  />
                 ) : (
                   <p className="text-center">
                     <span className="font-bold">&quot;{query}&quot;</span>

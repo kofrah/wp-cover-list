@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { tmpFont } from "./ui/fonts";
+import { FavoriteProvider } from "./context/FavoriteContext";
+import Header from "./ui/Headers/header";
 
 export const metadata: Metadata = {
   title: "週プロ表紙検索ツール",
@@ -24,9 +26,12 @@ export default function RootLayout({
         tracking-wide
         `}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
+        <FavoriteProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Header />
+            {children}
+          </ThemeProvider>
+        </FavoriteProvider>
       </body>
     </html>
   );

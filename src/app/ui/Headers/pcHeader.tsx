@@ -1,4 +1,5 @@
 import DarkModeToggle from "../buttons/darkModeButton";
+import FavoriteLinkButton from "../buttons/favoriteLinkButton";
 import Search from "../search";
 import Title from "../title";
 
@@ -16,6 +17,7 @@ const PCHeader = () => {
         </div>
         <Search placeholder="選手名を入力" />
         <div className="flex justify-end items-center mr-3">
+          <FavoriteLinkButton />
           <DarkModeToggle />
         </div>
       </div>

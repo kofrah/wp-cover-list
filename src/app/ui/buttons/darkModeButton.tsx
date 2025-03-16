@@ -20,7 +20,7 @@ const DarkModeToggle = () => {
   if (!mounted) {
     // マウントされる前のスケルトン
     return (
-      <div className="flex justify-center items-center w-12 h-12 rounded-lg  p-2 ">
+      <div className="flex justify-center items-center w-12 h-12 rounded-lg p-2 ">
         <div className="w-6 h-6"></div>
       </div>
     );

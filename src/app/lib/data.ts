@@ -78,7 +78,8 @@ export async function getMagazineData(name: string): Promise<
     ).values()
   ).sort(
     (a, b) =>
-      new Date(b.issue_date).getTime() - new Date(a.issue_date).getTime()
+      new Date(b.issue_date ?? "").getTime() -
+      new Date(a.issue_date ?? "").getTime()
   ); // issue_dateで降順ソート
 
   return { uniqueSortedMagazines };

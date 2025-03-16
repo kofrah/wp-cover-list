@@ -4,11 +4,13 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useEffect } from "react";
+import { useResetSearch } from "../hooks/useResetSearch";
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const { handleReset } = useResetSearch(); // リセット処理を取得
 
   // `query` を `useState` で管理する
   const urlQuery = searchParams.get("query")?.toString() || "";
@@ -31,6 +33,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
       params.delete("query");
     }
     replace(`${pathname}?${params.toString()}`);
+    replace(`/?${params.toString()}`);
   }, 300);
 
   return (

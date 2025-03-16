@@ -5,17 +5,17 @@ import { useResetSearch } from "../hooks/useResetSearch";
 
 // 検索結果が存在しない場合のコンポーネント
 interface NoResultProps {
-  query: string;
+  attention: string;
 }
 
-export const NoResult: React.FC<NoResultProps> = ({ query }) => {
+export const NoResult: React.FC<NoResultProps> = ({ attention }) => {
   const { handleReset } = useResetSearch(); // リセット処理を取得
 
   return (
     <>
       <div className="flex justify-center">
         <div className="pt-14 text-center">
-          <p>&quot;{query}&quot;を含む検索結果はありませんでした。</p>
+          <p>{attention}</p>
         </div>
       </div>
 
@@ -32,7 +32,7 @@ export const NoResult: React.FC<NoResultProps> = ({ query }) => {
           <div className="pt-8">
             <HealthiconsCryingOutline />
           </div>
-          <span className="pt-2">検索ワードをリセットする</span>
+          <span className="pt-2">トップページに戻る</span>
         </button>
       </div>
     </>
