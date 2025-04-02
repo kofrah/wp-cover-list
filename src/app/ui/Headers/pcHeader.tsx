@@ -15,7 +15,7 @@ const PCHeader = () => {
         <div className="flex justify-start items-center ml-3 mt-1">
           <Title />
         </div>
-        <Search placeholder="選手名を入力" />
+        <Search />
         <div className="flex justify-end items-center mr-3">
           <FavoriteLinkButton />
           <DarkModeToggle />

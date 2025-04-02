@@ -16,7 +16,7 @@ export default function MagazinesTable({
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 gap-y-6">
       {magazines.map((magazine) => (
         <div
-          key={magazine.id}
+          key={String(magazine.id)}
           className="
           p-1 rounded-sm dark:shadow-gray-700
           hover:shadow-lg dark:hover:shadow-gray-600 transition-shadow 

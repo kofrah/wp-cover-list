@@ -7,7 +7,6 @@ import { BookmarkIcon as BookmarkIconSolid } from "@heroicons/react/24/solid";
 export default function FavoriteButton({ magazineId }: { magazineId: string }) {
   const { favorites, toggleFavorite } = useFavorite();
   const isFavorite = favorites.has(magazineId);
-  console.log("isFavorite,magazineId", magazineId, isFavorite);
 
   return (
     <button

@@ -4,13 +4,15 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useEffect } from "react";
-import { useResetSearch } from "../hooks/useResetSearch";
 
-export default function Search({ placeholder }: { placeholder: string }) {
+export default function Search() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const { handleReset } = useResetSearch(); // リセット処理を取得
+
+  // パスを見て、/favoriteならplaceholderを「選手名をお気に入りから検索する」に変更
+  const isFavorite = pathname === "/favorites";
+  const placeholder = isFavorite ? "お気に入りから検索" : "選手名を入力";
 
   // `query` を `useState` で管理する
   const urlQuery = searchParams.get("query")?.toString() || "";
@@ -33,7 +35,6 @@ export default function Search({ placeholder }: { placeholder: string }) {
       params.delete("query");
     }
     replace(`${pathname}?${params.toString()}`);
-    replace(`/?${params.toString()}`);
   }, 300);
 
   return (

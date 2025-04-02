@@ -13,7 +13,7 @@ const SmartPhoneSecondHeader = () => {
   return (
     <>
       <div className={style}>
-        <Search placeholder="選手名を入力" />
+        <Search />
       </div>
     </>
   );
