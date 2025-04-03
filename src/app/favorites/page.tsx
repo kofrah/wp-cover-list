@@ -1,6 +1,6 @@
 "use client";
 
-import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
+import { TableSkeleton } from "@/app/ui/skeletons";
 import { useEffect, useState } from "react";
 import { NoResult } from "../ui/noResult";
 import Pagination from "../ui/pagination";
@@ -18,100 +18,53 @@ export default function Page() {
 
   // エラー
   const [error, setError] = useState<string | null>(null);
-  // 読み込み中
-  const [loading, setLoading] = useState(true);
   // 取得済みの雑誌リスト
-  const [allMagazines, setAllMagazines] = useState<Magazine[]>([]);
-  // 未取得の雑誌ID
-  const [missingIds, setMissingIds] = useState<string[]>([]);
+  const [fetchedMagazines, setFetchedMagazines] = useState<Magazine[]>([]);
+  // fetch実行されたか
+  const [hasFetchedOnce, setHasFetchedOnce] = useState(false);
 
   /**
-   * useEffect①：
-   * favoritesが変化したときに、まだ取得していない雑誌IDがあるか確認する。
-   * → 未取得のIDがあれば missingIds にセット（次の useEffect で取得）
+   * useEffect：
+   * お気に入りContextをもとに雑誌データを取得
    */
   useEffect(() => {
-    console.log("useEffect①");
-    if (favorites.size === 0) {
-      // お気に入りが空のとき：状態を初期化して終了
-      if (allMagazines.length > 0) {
-        setAllMagazines([]); // 必要なときだけ初期化（無限ループ防止）
-      }
-      setMissingIds([]);
-      setLoading(false);
+    console.log("useEffect");
+    if (hasFetchedOnce) {
+      // お気に入り削除時はAPI呼び出しをしない
+      console.log("hasFetchedOnce: true");
       return;
     }
 
-    // すでに取得済みの雑誌ID一覧
-    const alreadyFetchedIds = new Set(
-      allMagazines.map((mag) => String(mag.issue_number))
-    );
-
-    // favorites にあるが、まだ取得されていないIDを抽出
-    const newMissing = [...favorites].filter(
-      (id) => !alreadyFetchedIds.has(id)
-    );
-
-    // 未取得のID一覧を更新（空でもOK）
-    setMissingIds(newMissing);
-  }, [favorites, allMagazines]);
-
-  /**
-   * useEffect②：
-   * missingIds が更新されたら、それをもとに雑誌データを取得
-   */
-  useEffect(() => {
-    console.log("useEffect②");
-    if (missingIds.length === 0) {
-      console.log("missingIds.length === 0");
-      setLoading(false); // 取得するものがなければ読み込み完了とみなす
-      return;
-    }
-
+    // ID一覧から雑誌データを取得（API呼び出し）
     const fetchData = async () => {
-      setLoading(true);
       try {
-        // ID一覧から雑誌データを取得（API呼び出し）
-        // お気に入りページに移動した時のみこのブロックに入る想定
-        console.log("missingIds", missingIds);
-        const response = await getMagazineDataFromId(new Set(missingIds));
-
+        const response = await getMagazineDataFromId(favorites);
+        console.log("response", response);
         if ("error" in response) {
-          throw new Error(String(response.error)); // エラーハンドリング
+          throw new Error(String(response.error));
         }
-
-        // 重複を除外して、取得済みリストに追加
-        setAllMagazines((prev) => {
-          const newMagazines = response.uniqueSortedMagazines.filter(
-            (mag) =>
-              !prev.some(
-                (existingMag) =>
-                  String(existingMag.issue_number) === String(mag.issue_number)
-              )
-          );
-          return [...prev, ...newMagazines];
-        });
+        // 取得済みリストに追加
+        setFetchedMagazines(response.uniqueSortedMagazines);
+        setTimeout(() => {
+          setHasFetchedOnce(true);
+        }, 700);
       } catch (err) {
         setError(err instanceof Error ? err.message : "データ取得エラー");
-      } finally {
-        setLoading(false); // 最後にローディングを終了
       }
     };
-
     fetchData();
-  }, [missingIds]); // missingIds が変わったら再実行される
+  }, [favorites, hasFetchedOnce]);
 
   /**
    * 表示用の雑誌リストをフィルタリング：
-   * → allMagazines の中から、現在の favorites に含まれているものだけ表示
+   * → fetchedMagazines の中から、現在の favorites に含まれているものだけ表示
    */
-  const magazines = allMagazines.filter((mag) =>
+  const favoriteMagazines = fetchedMagazines.filter((mag) =>
     favorites.has(String(mag.issue_number))
   );
 
-  // 読み込み中で、表示対象もないとき：スケルトン表示
-  if (loading && magazines.length === 0) {
-    return <InvoicesTableSkeleton />;
+  if (!hasFetchedOnce) {
+    return <TableSkeleton />;
   }
 
   // エラーがあるときはエラー表示
@@ -120,17 +73,15 @@ export default function Page() {
     return <div>雑誌データの取得でエラーが発生しました</div>;
   }
 
-  /**
-   * ページネーションのための情報
-   */
-  const totalHits = magazines.length;
+  // ページネーションのための情報
+  const totalHits = favoriteMagazines.length;
   const itemsPerPage = 12;
   const totalPages = Math.ceil(totalHits / itemsPerPage);
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
 
   // 表示するページの範囲に切り出し
-  const magazinesOnPage: Magazine[] = magazines.slice(start, end);
+  const magazinesOnPage: Magazine[] = favoriteMagazines.slice(start, end);
 
   // JSXレンダリング部（一覧 + ページネーション）
   return (

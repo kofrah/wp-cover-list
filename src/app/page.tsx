@@ -1,5 +1,5 @@
 import Table from "@/app/ui/table";
-import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
+import { TableSkeleton } from "@/app/ui/skeletons";
 import { Suspense } from "react";
 import Pagination from "./ui/pagination";
 import { getMagazineData } from "./lib/data";
@@ -40,7 +40,7 @@ export default async function Page(props: {
         <div className="px-2 mb:px-4">
           {/* 言語選択とダークモード切り替え */}
           <div className="text-lg">
-            <Suspense fallback={<InvoicesTableSkeleton />}>
+            <Suspense fallback={<TableSkeleton />}>
               <div>
                 {query === "" ? (
                   <p className="text-center">
@@ -62,10 +62,7 @@ export default async function Page(props: {
             {/* ソートボタン */}
             {/* 新しい順と古い順のラジオボタン*/}
             {/* <SortButton /> */}
-            <Suspense
-              key={query + currentPage}
-              fallback={<InvoicesTableSkeleton />}
-            >
+            <Suspense key={query + currentPage} fallback={<TableSkeleton />}>
               <div className="pt-4">
                 <Table magazines={magazinesOnPage} />
               </div>

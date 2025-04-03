@@ -16,6 +16,16 @@ const config: Config = {
         light_contentBackGround: "#ECE7E7",
         dark_contentBackGround: "#1F2937",
       },
+      keyframes: {
+        shimmer: {
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
+      },
+      animation: {
+        shimmer: "shimmer 2s infinite",
+      },
     },
   },
   plugins: [],
