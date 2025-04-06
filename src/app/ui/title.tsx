@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useResetSearch } from "../hooks/useResetSearch";
 
 export default function Title() {
@@ -7,12 +8,13 @@ export default function Title() {
 
   return (
     <div className="md:text-xl">
-      <span
+      <Link
+        href="/?page=1"
         className="text-black dark:text-white cursor-pointer"
         onClick={handleReset}
       >
         「週プロ」表紙レスラー検索ツール
-      </span>
+      </Link>
     </div>
   );
 }
