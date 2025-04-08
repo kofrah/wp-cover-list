@@ -1,18 +1,15 @@
 "use client";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useEffect } from "react";
 
 export default function Search() {
   const searchParams = useSearchParams();
-  const pathname = usePathname();
   const { replace } = useRouter();
 
-  // パスを見て、/favoriteならplaceholderを「選手名をお気に入りから検索する」に変更
-  const isFavorite = pathname === "/favorites";
-  const placeholder = isFavorite ? "お気に入りから検索" : "選手名を入力";
+  const placeholder = "選手名を入力";
 
   // `query` を `useState` で管理する
   const urlQuery = searchParams.get("query")?.toString() || "";
@@ -34,7 +31,7 @@ export default function Search() {
     } else {
       params.delete("query");
     }
-    replace(`${pathname}?${params.toString()}`);
+    replace(`/?${params.toString()}`);
   }, 300);
 
   return (

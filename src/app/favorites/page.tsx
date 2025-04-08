@@ -13,7 +13,6 @@ import ClientMagazinesTable from "../ui/client/clientMagazinesTable"; // 雑誌�
 export default function Page() {
   const { favorites } = useFavorite(); // Contextからお気に入りのID（Set）を取得
   const searchParams = useSearchParams();
-  const query = searchParams.get("query") || "";
   const currentPage = Number(searchParams.get("page")) || 1; // クエリパラメータのpage番号を取得
 
   // エラー

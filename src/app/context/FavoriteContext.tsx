@@ -37,7 +37,6 @@ export const FavoriteProvider = ({
     const storedFavorites: string[] = JSON.parse(
       localStorage.getItem("favoriteMagazines") || "[]"
     );
-    console.log("FavoriteProvider:useEffect", storedFavorites);
     storedFavorites.forEach((id) => {
       dispatch({ type: "ADD", id });
     });

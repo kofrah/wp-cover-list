@@ -7,7 +7,7 @@ import Header from "./ui/Headers/header";
 
 export const metadata: Metadata = {
   title: "週プロ表紙検索ツール",
-  description: "「週刊プロレス」を表紙を飾ったレスラーで検索するツール",
+  description: "「週刊プロレス」を表紙を飾ったレスラーの名前で検索するツール",
 };
 
 export default function RootLayout({
