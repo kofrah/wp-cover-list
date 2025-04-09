@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { tmpFont } from "./ui/fonts";
 import { FavoriteProvider } from "./context/FavoriteContext";
 import Header from "./ui/Headers/header";
+// import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "週プロ表紙検索ツール",

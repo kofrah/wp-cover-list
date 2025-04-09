@@ -2,6 +2,8 @@ import DarkModeToggle from "../buttons/darkModeButton";
 import SmartPhoneSecondHeader from "./smartPhoneSecondHeader";
 import Title from "../title";
 import FavoriteLinkButton from "../buttons/favoriteLinkButton";
+import { Suspense } from "react";
+import TitleSkeleton from "../skeletons/titleSkeleton";
 
 const SmartPhoneHeader = () => {
   return (
@@ -12,7 +14,9 @@ const SmartPhoneHeader = () => {
         backdrop-blur-lg"
       >
         <div className="flex justify-start items-center ml-3 mt-1">
-          <Title />
+          <Suspense fallback={<TitleSkeleton />}>
+            <Title />
+          </Suspense>
         </div>
         <div className="flex justify-end items-center mr-3">
           <FavoriteLinkButton />

@@ -1,5 +1,5 @@
 import Table from "@/app/ui/table";
-import { TableSkeleton } from "@/app/ui/skeletons";
+import { TableSkeleton } from "@/app/ui/skeletons/tableSkeleton";
 import { Suspense } from "react";
 import Pagination from "./ui/pagination";
 import { getMagazineData } from "./lib/data";

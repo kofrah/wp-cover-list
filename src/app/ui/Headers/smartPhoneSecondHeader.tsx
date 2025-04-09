@@ -1,6 +1,8 @@
 "use client";
 import Search from "../search";
 import useHeaderScroll from "../../hooks/useHeaderScroll";
+import { Suspense } from "react";
+import SearchSkeleton from "../skeletons/searchSkeleton";
 
 const SmartPhoneSecondHeader = () => {
   const isHeaderActive = useHeaderScroll();
@@ -13,7 +15,9 @@ const SmartPhoneSecondHeader = () => {
   return (
     <>
       <div className={style}>
-        <Search />
+        <Suspense fallback={<SearchSkeleton />}>
+          <Search />
+        </Suspense>
       </div>
     </>
   );

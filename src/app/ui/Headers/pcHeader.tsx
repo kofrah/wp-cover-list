@@ -1,7 +1,10 @@
+import { Suspense } from "react";
 import DarkModeToggle from "../buttons/darkModeButton";
 import FavoriteLinkButton from "../buttons/favoriteLinkButton";
 import Search from "../search";
 import Title from "../title";
+import TitleSkeleton from "../skeletons/titleSkeleton";
+import SearchSkeleton from "../skeletons/searchSkeleton";
 
 const PCHeader = () => {
   return (
@@ -13,9 +16,13 @@ const PCHeader = () => {
         border-b border-gray-200 dark:border-none"
       >
         <div className="flex justify-start items-center ml-3 mt-1">
-          <Title />
+          <Suspense fallback={<TitleSkeleton />}>
+            <Title />
+          </Suspense>
         </div>
-        <Search />
+        <Suspense fallback={<SearchSkeleton />}>
+          <Search />
+        </Suspense>
         <div className="flex justify-end items-center mr-3">
           <FavoriteLinkButton />
           <DarkModeToggle />
