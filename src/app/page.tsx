@@ -36,11 +36,11 @@ export default async function Page(props: {
 
   return (
     <>
-      <div className="w-full px-4 pt-28 md:pt-16">
-        <div className="px-2 mb:px-4">
-          {/* 言語選択とダークモード切り替え */}
-          <div className="text-lg">
-            <Suspense fallback={<TableSkeleton />}>
+      <Suspense fallback={<TableSkeleton />}>
+        <div className="w-full px-4 pt-28 md:pt-16">
+          <div className="px-2 mb:px-4">
+            {/* 言語選択とダークモード切り替え */}
+            <div className="text-lg">
               <div>
                 {query === "" ? (
                   <p className="text-center">
@@ -58,21 +58,16 @@ export default async function Page(props: {
                   </p>
                 )}
               </div>
-            </Suspense>
-            {/* ソートボタン */}
-            {/* 新しい順と古い順のラジオボタン*/}
-            {/* <SortButton /> */}
-            <Suspense key={query + currentPage} fallback={<TableSkeleton />}>
               <div className="pt-4">
                 <Table magazines={magazinesOnPage} />
               </div>
-            </Suspense>
-            <div className="mt-5 mb-5 flex w-full justify-center">
-              <Pagination totalPages={totalPages} />
+              <div className="mt-5 mb-5 flex w-full justify-center">
+                <Pagination totalPages={totalPages} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Suspense>
     </>
   );
 }
