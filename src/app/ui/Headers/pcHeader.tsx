@@ -21,7 +21,7 @@ const PCHeader = () => {
           </Suspense>
         </div>
         <Suspense fallback={<SearchSkeleton />}>
-          <Search />
+          <Search id="search-pc" />
         </Suspense>
         <div className="flex justify-end items-center mr-3">
           <FavoriteLinkButton />

@@ -16,7 +16,7 @@ const SmartPhoneSecondHeader = () => {
     <>
       <div className={style}>
         <Suspense fallback={<SearchSkeleton />}>
-          <Search />
+          <Search id="search-mobile" />
         </Suspense>
       </div>
     </>
