@@ -39,15 +39,15 @@ export default function MagazinesTable({
             </div>
           </Link>
 
-          <span className="text-black dark:text-white mt-1 flex justify-between items-center">
+          <div className="text-black dark:text-white mt-1 flex justify-between items-center">
             <div>
               <p className="text-xs md:text-sm">
                 {formatDateToJapaneseManual(magazine.issue_date)}発売
               </p>
-              <p className="text-base text-bold">#{magazine.issue_number}</p>
+              <p className="text-base font-bold">#{magazine.issue_number}</p>
             </div>
             <FavoriteButton magazineId={String(magazine.issue_number)} />
-          </span>
+          </div>
         </div>
       ))}
     </div>

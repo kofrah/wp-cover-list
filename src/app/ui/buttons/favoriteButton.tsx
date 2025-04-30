@@ -10,7 +10,7 @@ export default function FavoriteButton({ magazineId }: { magazineId: string }) {
 
   return (
     <button
-      className={`pr-4 ml-auto text-xl ${
+      className={`ml-auto text-xl ${
         isFavorite ? "text-orange-600 dark:text-white" : "text-gray-400"
       } transition-colors duration-200`}
       onClick={(e) => {
