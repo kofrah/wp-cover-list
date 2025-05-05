@@ -15,6 +15,8 @@ const config: Config = {
         dark_contentText: "#F9FAFB",
         light_contentBackGround: "#ECE7E7",
         dark_contentBackGround: "#1F2937",
+        light_table_item_explanation: "#333333",
+        dark_table_item_explanation: "#d1d1d1",
       },
       keyframes: {
         shimmer: {

@@ -20,7 +20,7 @@ export default function RootLayout({
     // Hydrationの警告を抑制する
     <html lang="en" className="" suppressHydrationWarning>
       <body
-        className={`${tmpFont.className} antialiased 
+        className={`font-sans antialiased 
         text-black dark:text-dark_contentText
         bg-light_contentBackGround
         dark:bg-dark_contentBackGround
