@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { tmpFont } from "./ui/fonts";
 import { FavoriteProvider } from "./context/FavoriteContext";
 import Header from "./ui/Headers/header";
 // import { Suspense } from "react";

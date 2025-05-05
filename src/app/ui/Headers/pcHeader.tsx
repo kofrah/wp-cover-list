@@ -15,7 +15,7 @@ const PCHeader = () => {
        bg-orange-600 dark:bg-black backdrop-blur-lg
         border-b border-gray-200 dark:border-none"
       >
-        <div className="flex justify-start items-center ml-3 mt-1">
+        <div className="flex justify-start items-center ml-3">
           <Suspense fallback={<TitleSkeleton />}>
             <Title />
           </Suspense>

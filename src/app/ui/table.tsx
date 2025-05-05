@@ -39,7 +39,7 @@ export default function MagazinesTable({
             </div>
           </Link>
 
-          <div className="mt-1 flex justify-between items-center">
+          <div className="mt-1 flex justify-between items-start md:items-center">
             <div>
               <p className="text-black dark:text-white text-base font-bold">
                 No.{magazine.issue_number}
