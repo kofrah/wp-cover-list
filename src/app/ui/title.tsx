@@ -4,15 +4,34 @@ import Link from "next/link";
 import { useResetSearch } from "../hooks/useResetSearch";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export default function Title() {
   const { handleReset } = useResetSearch(); // リセット処理を取得
-  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
 
-  const isDark = theme === "dark";
-  const imageSrc = isDark
-    ? "/title_image_dark_mode.png"
-    : "/title_image_light_mode.png";
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div style={{ width: 230, height: 25 }} />;
+  }
+
+  let src;
+  switch (resolvedTheme) {
+    case "light":
+      src = "/title_image_light_mode.png";
+      break;
+    case "dark":
+      src = "/title_image_dark_mode.png";
+      break;
+    default:
+      // 来ないはずだが念の為
+      src = "/title_image_light_mode.png";
+      break;
+  }
 
   return (
     <Link
@@ -21,7 +40,7 @@ export default function Title() {
       onClick={handleReset}
     >
       <Image
-        src={imageSrc}
+        src={src}
         alt="週プロを表紙で検索"
         width={230}
         height={25}
