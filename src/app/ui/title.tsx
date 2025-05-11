@@ -16,7 +16,9 @@ export default function Title() {
   }, []);
 
   if (!mounted) {
-    return <div style={{ width: 230, height: 25 }} />;
+    return (
+      <div className="w-[200px] md:w-[230px] h-[25px] bg-gray-100 dark:bg-gray-800" />
+    );
   }
 
   let src;
