@@ -3,11 +3,15 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { FavoriteProvider } from "./context/FavoriteContext";
 import Header from "./ui/Headers/header";
-// import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "週プロ表紙検索ツール",
   description: "「週刊プロレス」を表紙を飾ったレスラーの名前で検索するツール",
+  formatDetection: {
+    telephone: false,
+    address: false,
+    email: false,
+  },
 };
 
 export default function RootLayout({

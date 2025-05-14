@@ -9,9 +9,10 @@ const SmartPhoneHeader = () => {
   return (
     <>
       <div
-        className="fixed top-0 flex w-full justify-between items-center py-1 
-        bg-orange-600 #F26F2F dark:bg-black
-        backdrop-blur-lg"
+        className="fixed top-0 flex w-full justify-between items-center
+                   pt-[env(safe-area-inset-top)]
+                 bg-orange-600 dark:bg-black
+                   backdrop-blur-lg"
       >
         <div className="flex justify-start items-center ml-3 mt-1">
           <Suspense fallback={<TitleSkeleton />}>
