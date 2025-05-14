@@ -7,7 +7,7 @@ import SearchSkeleton from "../skeletons/searchSkeleton";
 const SmartPhoneSecondHeader = () => {
   const isHeaderActive = useHeaderScroll();
   const styles = {
-    base: "w-full fixed top-12 transition-all duration-700 ease-in-out opacity-0 transform  pointer-events-none bg-orange-600 dark:bg-black backdrop-blur-lg",
+    base: "w-full fixed top-14 transition-all duration-700 ease-in-out opacity-0 transform  pointer-events-none bg-orange-600 dark:bg-black backdrop-blur-lg",
     active: "w-full fixed opacity-100 translate-y-0 pointer-events-auto",
   };
 

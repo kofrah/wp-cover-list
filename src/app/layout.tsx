@@ -23,17 +23,18 @@ export default function RootLayout({
     // Hydrationの警告を抑制する
     <html lang="en" className="" suppressHydrationWarning>
       <body
-        className={`font-sans antialiased 
-        text-black dark:text-dark_contentText
-        bg-light_contentBackGround
-        dark:bg-dark_contentBackGround
-        tracking-wide
-        `}
+        className={`font-sans antialiased text-black dark:text-dark_contentText
+                  bg-orange-600 dark:bg-black
+                    tracking-wide
+                    min-h-screen  flex flex-col 
+                   `}
       >
         <FavoriteProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
-            {children}
+            <main className="flex-grow bg-light_contentBackGround dark:bg-dark_contentBackGround">
+              {children}
+            </main>
           </ThemeProvider>
         </FavoriteProvider>
       </body>
