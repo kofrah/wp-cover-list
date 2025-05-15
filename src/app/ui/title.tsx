@@ -16,9 +16,7 @@ export default function Title() {
   }, []);
 
   if (!mounted) {
-    return (
-      <div className="w-[200px] md:w-[230px] h-[25px] bg-gray-100 dark:bg-gray-800" />
-    );
+    return <div className="w-[200px] md:w-[230px] h-[25px]" />;
   }
 
   let src;
@@ -48,6 +46,7 @@ export default function Title() {
         height={25}
         sizes="(max-width: 768px) 200px, 230px"
         className="w-[200px] md:w-[230px] h-auto"
+        priority={true}
       />
     </Link>
   );
