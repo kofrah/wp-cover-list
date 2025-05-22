@@ -3,6 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { FavoriteProvider } from "./context/FavoriteContext";
 import Header from "./ui/Headers/header";
+import SpTwitterShareButton from "./ui/shareButtons/smartPhone/spTwitterShareButton";
+import SpLineShareButton from "./ui/shareButtons/smartPhone/spLineShareButton";
 
 export const metadata: Metadata = {
   title: "週プロ表紙検索ツール",
@@ -35,6 +37,10 @@ export default function RootLayout({
             <main className="flex-grow bg-light_contentBackGround dark:bg-dark_contentBackGround">
               {children}
             </main>
+            <div className="fixed bottom-4 right-4 flex flex-col md:flex-row gap-3 z-50">
+              <SpTwitterShareButton />
+              <SpLineShareButton />
+            </div>
           </ThemeProvider>
         </FavoriteProvider>
       </body>
