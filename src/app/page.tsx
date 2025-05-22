@@ -5,6 +5,8 @@ import Pagination from "./ui/pagination";
 import { getMagazineData } from "./lib/data";
 import { Magazine } from "./lib/definitions";
 import { NoResult } from "./ui/noResult";
+import SpTwitterShareButton from "./ui/shareButtons/smartPhone/spTwitterShareButton";
+import SpLineShareButton from "./ui/shareButtons/smartPhone/spLineShareButton";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -37,27 +39,40 @@ export default async function Page(props: {
   return (
     <>
       <Suspense fallback={<TableSkeleton />}>
-        <div className="w-full px-4 pt-28 md:pt-16">
-          <div className="px-2 mb:px-4">
+        <div className="w-full px-4 pt-32 md:pt-16">
+          <div className="pt-2 px-2 mb:px-4">
             {/* 言語選択とダークモード切り替え */}
             <div className="text-lg">
-              <div>
-                {query === "" ? (
-                  <p className="text-center">
-                    全ての表紙：<span className="font-bold">{totalHits}件</span>
-                  </p>
-                ) : totalHits === 0 ? (
-                  <NoResult
-                    attention={`${query}を含む検索結果はありませんでした。`}
-                  />
-                ) : (
-                  <p className="text-center">
-                    <span className="font-bold">&quot;{query}&quot;</span>
-                    の検索結果：
-                    <span className="font-bold">{totalHits}件</span>
-                  </p>
-                )}
+              <div className="relative w-full flex items-center">
+                <div className="absolute left-0 flex gap-2">
+                  {/* 空スペースを確保 or 左に何か置きたい場合 */}
+                </div>
+
+                <div className="mx-auto text-center">
+                  {query === "" ? (
+                    <p>
+                      全ての表紙：
+                      <span className="font-bold">{totalHits}件</span>
+                    </p>
+                  ) : totalHits === 0 ? (
+                    <NoResult
+                      attention={`${query}を含む検索結果はありませんでした。`}
+                    />
+                  ) : (
+                    <p>
+                      <span className="font-bold">&quot;{query}&quot;</span>
+                      の検索結果：
+                      <span className="font-bold">{totalHits}件</span>
+                    </p>
+                  )}
+                </div>
+
+                <div className="absolute right-0 flex items-center gap-2">
+                  <SpTwitterShareButton />
+                  <SpLineShareButton />
+                </div>
               </div>
+
               <div className="pt-4">
                 <Table magazines={magazinesOnPage} />
               </div>
