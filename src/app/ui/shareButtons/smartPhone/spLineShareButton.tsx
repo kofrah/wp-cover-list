@@ -9,10 +9,19 @@ export default function SpLineShareButton() {
   const page = params.get("page") || "1";
   const query = params.get("query") || "";
 
+  // URL部分はエンコードされたものを使用
+  const encodedQuery = encodeURIComponent(query);
+  const shareUrlOnly =
+    query === ""
+      ? `${baseUrl}/?page=${page}`
+      : `${baseUrl}/?page=${page}&query=${encodedQuery}`;
+
+  // シェア本文には全角文字を使ってよいが、URLはリンク判定されるようにする
   const shareText =
     query === ""
-      ? `週刊プロレスを表紙を飾った選手で検索！\n#週プロ検索\n${baseUrl}/?page=${page}`
-      : `週刊プロレスの表紙を\n${query}で検索！\n#週プロ検索\n${baseUrl}/?page=${page}/query=${query}`;
+      ? `週刊プロレスを表紙を飾った選手で検索！\n#週プロ検索\n${shareUrlOnly}`
+      : `週刊プロレスの表紙を\n「${query}」で検索！\n#週プロ検索\n${shareUrlOnly}`;
+
   const lineUrl = `https://line.me/R/msg/text/?`;
   const shareUrl = `${lineUrl}${encodeURIComponent(shareText)}`;
 
