@@ -1,19 +1,18 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import SpShareButtonBase from "./spShareButtonBase";
 
-export default async function SpTwitterShareButton(props: {
-  searchParams?: Promise<{
-    query?: string;
-    page?: string;
-  }>;
-}) {
+export default function SpTwitterShareButton() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost";
-  const page = (await props.searchParams)?.page || "1";
-  const query = (await props.searchParams)?.query || "";
+  const params = useSearchParams();
+  const page = params.get("page") || "1";
+  const query = params.get("query") || "";
 
   const shareText =
     query === ""
       ? `週刊プロレスを表紙を飾った選手で検索！\n#週プロ検索\n${baseUrl}/?page=${page}`
-      : `週刊プロレスを\n${query}で検索！\n#週プロ検索\n${baseUrl}/?page=${page}/query=${query}`;
+      : `週刊プロレスの表紙を\n「${query}」で検索！\n#週プロ検索\n${baseUrl}/?page=${page}/query=${query}`;
 
   const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     shareText
@@ -26,8 +25,8 @@ export default async function SpTwitterShareButton(props: {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 1227"
-          width="18"
-          height="18"
+          width="20"
+          height="20"
           fill="white"
           className="drop-shadow-sm"
         >

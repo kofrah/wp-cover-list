@@ -12,7 +12,7 @@ export default function SpShareButtonBase({
   href,
   icon,
   bgColor,
-  size = "w-[40px] h-[40px] md:w-[48px] md:h-[48px]",
+  size = "w-[45px] h-[45px] md:w-[48px] md:h-[48px]",
 }: Props) {
   return (
     <Link

@@ -1,23 +1,20 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import SpShareButtonBase from "./spShareButtonBase";
 
-export default async function SpLineShareButton(props: {
-  searchParams?: Promise<{
-    query?: string;
-    page?: string;
-  }>;
-}) {
+export default function SpLineShareButton() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost";
-  const page = (await props.searchParams)?.page || "1";
-  const query = (await props.searchParams)?.query || "";
+  const params = useSearchParams();
+  const page = params.get("page") || "1";
+  const query = params.get("query") || "";
 
-  const url =
+  const shareText =
     query === ""
-      ? `${baseUrl}/?page=${page}`
-      : `${baseUrl}/?page=${page}&query=${encodeURIComponent(query)}`;
-
-  const shareUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(
-    url
-  )}`;
+      ? `週刊プロレスを表紙を飾った選手で検索！\n#週プロ検索\n${baseUrl}/?page=${page}`
+      : `週刊プロレスの表紙を\n${query}で検索！\n#週プロ検索\n${baseUrl}/?page=${page}/query=${query}`;
+  const lineUrl = `https://line.me/R/msg/text/?`;
+  const shareUrl = `${lineUrl}${encodeURIComponent(shareText)}`;
 
   return (
     <SpShareButtonBase
@@ -26,8 +23,8 @@ export default async function SpLineShareButton(props: {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 36 34"
-          width="19"
-          height="19"
+          width="25"
+          height="25"
           fill="white"
           className="drop-shadow-sm"
         >

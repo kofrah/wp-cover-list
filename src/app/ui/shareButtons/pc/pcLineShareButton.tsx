@@ -8,13 +8,13 @@ export default async function PcLineShareButton(props: {
 }) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost";
 
-  const lineUrl = `https://line.me/R/msg/text/?`;
   const page = (await props.searchParams)?.page || "1";
   const query = (await props.searchParams)?.query || "";
   const shareText =
     query === ""
       ? `週刊プロレスを表紙を飾った選手で検索！\n#週プロ検索\n${baseUrl}/?page=${page}`
       : `週刊プロレスを\n${query}で検索！\n#週プロ検索\n${baseUrl}/?page=${page}/query=${query}`;
+  const lineUrl = `https://line.me/R/msg/text/?`;
   const shareUrl = `${lineUrl}${encodeURIComponent(shareText)}`;
 
   return (
